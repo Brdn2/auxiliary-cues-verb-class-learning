@@ -1,0 +1,16 @@
+accuracy,baseline,n_examples,seed
+0.305,aux_only_nb,600,deterministic
+0.52,lexical_cooccurrence_nb,600,deterministic
+1.0,lexical_identity_ceiling,600,deterministic
+0.2,majority_frequency,600,deterministic
+0.445,pos_frame_count,600,deterministic
+0.2,uniform_random,600,41001
+0.165,uniform_random,600,41002
+0.18666666666666668,uniform_random,600,41003
+0.19333333333333333,uniform_random,600,41004
+0.21333333333333335,uniform_random,600,41005
+0.21833333333333332,uniform_random,600,41006
+0.18833333333333332,uniform_random,600,41007
+0.17833333333333334,uniform_random,600,41008
+0.225,uniform_random,600,41009
+0.17333333333333334,uniform_random,600,41010

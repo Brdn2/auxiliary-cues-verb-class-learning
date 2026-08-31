@@ -1,0 +1,13 @@
+{
+  "specificity_criterion_satisfied": false,
+  "overall_aux_effect_ci_below_zero": true,
+  "required_specificity_contrasts": [
+    "AUX_specific_vs_content",
+    "AUX_specific_vs_function"
+  ],
+  "negative_seed_counts": {
+    "AUX_specific_vs_content": 3,
+    "AUX_specific_vs_function": 4
+  },
+  "interpretation": "The target ablation shows an overall AUX contribution, but the preregistered criterion for AUX specificity against both controls is not satisfied."
+}

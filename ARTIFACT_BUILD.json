@@ -1,0 +1,33 @@
+{
+  "artifact_policy": "code_and_aggregate_results_only",
+  "e7_gate_required": true,
+  "file_count": 120,
+  "total_source_bytes": 1116924,
+  "excluded_roots": [
+    ".git",
+    ".pytest_cache",
+    "archive",
+    "build",
+    "data",
+    "literature",
+    "logs",
+    "models",
+    "tmp"
+  ],
+  "excluded_sensitive_classes": [
+    "automatic_key",
+    "blind_review",
+    "candidate_set_audit",
+    "context_sample",
+    "debug",
+    "evaluation_item_audit",
+    "evaluation_items",
+    "exposure_items",
+    "matched_pairs",
+    "mvp_per_example",
+    "nonce_per_example",
+    "smoke"
+  ],
+  "source_license_status": "requires_author_confirmation",
+  "submission_ready": false
+}

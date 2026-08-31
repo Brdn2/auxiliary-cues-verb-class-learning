@@ -1,0 +1,31 @@
+{
+  "status": "imported_with_author_accepted_runtime_heterogeneity",
+  "archive": "mbp_e7_six_results.tar.gz",
+  "archive_sha256": "f33b3ce0aace9b5f5989dba2d728e011be78c817c8f4f62ff9fe45ffce7e5d01",
+  "imported_cells": [
+    {"condition": "original", "seed": 2029},
+    {"condition": "original", "seed": 2030},
+    {"condition": "AUX_target_ablation", "seed": 2029},
+    {"condition": "AUX_target_ablation", "seed": 2030},
+    {"condition": "AUX_identity_shuffle", "seed": 2029},
+    {"condition": "AUX_identity_shuffle", "seed": 2030}
+  ],
+  "validation": {
+    "manifest_status": "complete",
+    "manifest_model_and_summary_sha256_verified": true,
+    "all_summaries_debug_false": true,
+    "all_summaries_have_epochs": [1, 2, 3, 4, 5],
+    "architecture_config_matches_local_models_except_transformers_version": true
+  },
+  "overlap_handling": {
+    "cell": {"condition": "original", "seed": 2029},
+    "selected_source": "MBP archive",
+    "prior_local_copy_preserved_at": "models/ACL_confirmatory_aux_v2/_superseded_local_before_mbp_import/original/2029"
+  },
+  "runtime_variation": {
+    "archive_device": "mps",
+    "archive_transformers_version": "4.56.1",
+    "local_identity_shuffle_seeds_2026_2028_transformers_version": "4.57.3",
+    "interpretation": "The author accepted this runtime heterogeneity before full evaluation. Treat affected identity-shuffle and cross-device contrasts as qualified sensitivity evidence, not as an unqualified same-environment confirmation."
+  }
+}

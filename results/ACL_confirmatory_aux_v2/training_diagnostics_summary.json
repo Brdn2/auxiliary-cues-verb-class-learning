@@ -1,0 +1,92 @@
+{
+  "AUX_identity_shuffle": {
+    "final_train_loss": {
+      "mean": 2.8369924357021676,
+      "seed_sd": 0.011271728374986929
+    },
+    "final_dev_loss": {
+      "mean": 3.2167965512788643,
+      "seed_sd": 0.015677962194770762
+    },
+    "best_dev_loss": {
+      "mean": 3.2159498692739965,
+      "seed_sd": 0.015096362864033635
+    },
+    "elapsed_seconds": {
+      "mean": 11082.452,
+      "seed_sd": 5455.378980925156
+    }
+  },
+  "AUX_matched_content": {
+    "final_train_loss": {
+      "mean": 2.3867448615916302,
+      "seed_sd": 0.014423391721205778
+    },
+    "final_dev_loss": {
+      "mean": 2.872597847578379,
+      "seed_sd": 0.025320105487139838
+    },
+    "best_dev_loss": {
+      "mean": 2.8690727820610715,
+      "seed_sd": 0.02328583620209463
+    },
+    "elapsed_seconds": {
+      "mean": 10162.09,
+      "seed_sd": 781.5315579360824
+    }
+  },
+  "AUX_matched_function": {
+    "final_train_loss": {
+      "mean": 2.7123322204941225,
+      "seed_sd": 0.020982373304088333
+    },
+    "final_dev_loss": {
+      "mean": 2.7421162514064807,
+      "seed_sd": 0.023588494755703408
+    },
+    "best_dev_loss": {
+      "mean": 2.7421162514064807,
+      "seed_sd": 0.023588494755703408
+    },
+    "elapsed_seconds": {
+      "mean": 12087.592,
+      "seed_sd": 2520.3838543106876
+    }
+  },
+  "AUX_target_ablation": {
+    "final_train_loss": {
+      "mean": 2.719124770495788,
+      "seed_sd": 0.008416976669509935
+    },
+    "final_dev_loss": {
+      "mean": 4.189625929638754,
+      "seed_sd": 0.0563307608452201
+    },
+    "best_dev_loss": {
+      "mean": 4.163378354731976,
+      "seed_sd": 0.04913894666117189
+    },
+    "elapsed_seconds": {
+      "mean": 6879.008,
+      "seed_sd": 1455.6317339114314
+    }
+  },
+  "original": {
+    "final_train_loss": {
+      "mean": 2.756609991704003,
+      "seed_sd": 0.01744930226897477
+    },
+    "final_dev_loss": {
+      "mean": 2.5950786568229702,
+      "seed_sd": 0.019448559109126923
+    },
+    "best_dev_loss": {
+      "mean": 2.5950786568229702,
+      "seed_sd": 0.019448559109126923
+    },
+    "elapsed_seconds": {
+      "mean": 6455.392,
+      "seed_sd": 942.4222994072245
+    }
+  }
+}

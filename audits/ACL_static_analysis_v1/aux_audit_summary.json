@@ -1,0 +1,13 @@
+{
+  "aux_tokens": 935364,
+  "aux_types": 58,
+  "class_event_counts": {
+    "canonical": 935294,
+    "likely_mistag": 61,
+    "transcription_or_tokenization_artifact": 9
+  },
+  "canonical_event_rate": 0.9999251628243122,
+  "suspicious_event_rate": 7.483717568775364e-05,
+  "sample_size": 500,
+  "scope": "Lexicon-based corpus audit; the exported blind-review sheet still requires independent human annotation."
+}

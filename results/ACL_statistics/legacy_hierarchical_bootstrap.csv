@@ -1,0 +1,9 @@
+reference,comparison,metric,n_seeds,n_items_per_seed,delta_comparison_minus_reference,ci95_low,ci95_high,bootstrap_p_two_sided,bootstrap_samples,bootstrap_seed
+original,AUX_identity_shuffle,verb_class_accuracy,3,600,-0.1111111111111111,-0.1366666666666667,-0.08555555555555555,0.0,10000,51001
+original,AUX_identity_shuffle,class_preference_score,3,600,-0.16120232649809124,-0.22369236553240374,-0.10934204152047744,0.0,10000,51002
+original,AUX_random_ablation_r01,verb_class_accuracy,3,600,-0.058888888888888886,-0.07888888888888888,-0.03888888888888889,0.0,10000,51003
+original,AUX_random_ablation_r01,class_preference_score,3,600,-0.1504241911840701,-0.2772301102100242,-0.06499168026926921,0.0,10000,51004
+original,AUX_random_ablation_r02,verb_class_accuracy,3,600,-0.05611111111111111,-0.08055555555555556,-0.032777777777777774,0.0,10000,51005
+original,AUX_random_ablation_r02,class_preference_score,3,600,-0.2056221645122958,-0.24984239383694454,-0.1676325914458237,0.0,10000,51006
+original,AUX_target_ablation,verb_class_accuracy,3,600,-0.11666666666666667,-0.1411111111111111,-0.09222222222222222,0.0,10000,51007
+original,AUX_target_ablation,class_preference_score,3,600,-0.17470007804396187,-0.24757864154192347,-0.10453607444353913,0.0,10000,51008

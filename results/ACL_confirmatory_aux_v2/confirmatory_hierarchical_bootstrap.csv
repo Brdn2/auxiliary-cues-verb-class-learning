@@ -1,0 +1,13 @@
+bootstrap_p_two_sided,bootstrap_samples,bootstrap_seed,ci95_high,ci95_low,comparison,contrast_label,delta_comparison_minus_reference,metric,n_items_per_seed,n_seeds,reference
+0.0,10000,81001,-0.08478588511430132,-0.20716681664161843,AUX_target_ablation,total_AUX_effect,-0.1443538973773502,class_preference_score,600,5,original
+0.0,10000,81001,-0.07033333333333333,-0.12733333333333335,AUX_target_ablation,total_AUX_effect,-0.10066666666666667,verb_class_accuracy,600,5,original
+0.0032,10000,81003,-0.03798261335707647,-0.1989139288223944,AUX_matched_content,content_damage_effect,-0.1216377158106413,class_preference_score,600,5,original
+0.0012,10000,81003,-0.010333333333333333,-0.04133333333333333,AUX_matched_content,content_damage_effect,-0.026,verb_class_accuracy,600,5,original
+0.0046,10000,81005,-0.0302826083951213,-0.1643006785246284,AUX_matched_function,function_damage_effect,-0.0988700977395833,class_preference_score,600,5,original
+0.074,10000,81005,0.002,-0.04266666666666667,AUX_matched_function,function_damage_effect,-0.02033333333333333,verb_class_accuracy,600,5,original
+0.0,10000,81007,-0.08704648739280417,-0.19030475955102005,AUX_identity_shuffle,AUX_identity_effect,-0.13742538919982933,class_preference_score,600,5,original
+0.0,10000,81007,-0.08333333333333333,-0.124,AUX_identity_shuffle,AUX_identity_effect,-0.103,verb_class_accuracy,600,5,original
+0.4884,10000,81009,0.042648993627784335,-0.08339160099291214,AUX_target_ablation,AUX_specific_vs_content,-0.022716181566708897,class_preference_score,600,5,AUX_matched_content
+0.0,10000,81009,-0.043,-0.10300000000000001,AUX_target_ablation,AUX_specific_vs_content,-0.07466666666666667,verb_class_accuracy,600,5,AUX_matched_content
+0.0864,10000,81011,0.006202299102045874,-0.0990917539483318,AUX_target_ablation,AUX_specific_vs_function,-0.04548379963776688,class_preference_score,600,5,AUX_matched_function
+0.0,10000,81011,-0.05800000000000001,-0.10366666666666666,AUX_target_ablation,AUX_specific_vs_function,-0.08033333333333334,verb_class_accuracy,600,5,AUX_matched_function

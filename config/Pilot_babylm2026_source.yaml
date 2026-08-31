@@ -1,0 +1,78 @@
+version: Pilot_babylm2026_source
+seed: 2026
+lowercase: true
+source_distribution: CHILDES-BabyLM-2026-Strict-Small-spaCy
+
+paths:
+  raw_corpus: data/raw/childes_BabyLM2026_StrictSmall_cleaned_spacy_pos.txt
+  processed_dir: data/processed_babylm2026
+  splits_dir: data/splits_babylm2026
+
+split: {train: 0.8, dev: 0.1, test: 0.1}
+
+special_tokens:
+  pad: "[PAD]"
+  unk: "[UNK]"
+  bos: "[BOS]"
+  eos: "[EOS]"
+  mask: "[MASK]"
+  mask_verb: "[MASK_VERB]"
+  fw_mask: "<FW_MASK>"
+  content_mask: "<CONTENT_MASK>"
+
+comp_allowlist: [that, whether, if, because, when]
+data: {min_utterance_tokens: 2, max_utterance_tokens: 80, vocab_min_freq: 1}
+
+verb_lexicon:
+  transitive_action:
+    eat: [eat, eats, ate, eating]
+    push: [push, pushes, pushed, pushing]
+    hold: [hold, holds, held, holding]
+    open: [open, opens, opened, opening]
+    close: [close, closes, closed, closing]
+    take: [take, takes, took, taken, taking]
+    make: [make, makes, made, making]
+    draw: [draw, draws, drew, drawn, drawing]
+    write: [write, writes, wrote, written, writing]
+    read: [read, reads, reading]
+    hit: [hit, hits, hitting]
+    break: [break, breaks, broke, broken, breaking]
+    use: [use, uses, used, using]
+  intransitive:
+    sleep: [sleep, sleeps, slept, sleeping]
+    fall: [fall, falls, fell, fallen, falling]
+    cry: [cry, cries, cried, crying]
+    laugh: [laugh, laughs, laughed, laughing]
+    go: [go, goes, went, gone, going]
+    come: [come, comes, came, coming]
+    sit: [sit, sits, sat, sitting]
+    play: [play, plays, played, playing]
+    happen: [happen, happens, happened, happening]
+    walk: [walk, walks, walked, walking]
+    run: [run, runs, ran, running]
+    jump: [jump, jumps, jumped, jumping]
+  ditransitive_transfer:
+    give: [give, gives, gave, given, giving]
+    show: [show, shows, showed, shown, showing]
+    send: [send, sends, sent, sending]
+    bring: [bring, brings, brought, bringing]
+    tell: [tell, tells, told, telling]
+    pass: [pass, passes, passed, passing]
+    hand: [hand, hands, handed, handing]
+  mental_communication:
+    think: [think, thinks, thought, thinking]
+    know: [know, knows, knew, known, knowing]
+    say: [say, says, said, saying]
+    wonder: [wonder, wonders, wondered, wondering]
+    believe: [believe, believes, believed, believing]
+    remember: [remember, remembers, remembered, remembering]
+    want: [want, wants, wanted, wanting]
+    like: [like, likes, liked, liking]
+    ask: [ask, asks, asked, asking]
+    mean: [mean, means, meant, meaning]
+  perception:
+    see: [see, sees, saw, seen, seeing]
+    look: [look, looks, looked, looking]
+    watch: [watch, watches, watched, watching]
+    hear: [hear, hears, heard, hearing]
+    find: [find, finds, found, finding]

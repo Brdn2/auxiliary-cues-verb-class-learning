@@ -1,0 +1,9 @@
+bootstrap_p_two_sided,bootstrap_samples,bootstrap_seed,ci95_high,ci95_low,comparison,delta_comparison_minus_reference,holm_adjusted_p,holm_adjusted_p_upper_bound,metric,multiplicity_family,multiplicity_family_size,n_items_per_seed,n_seeds,reference
+0.202,10000,51001,0.008666666666666668,-0.05266666666666667,aux_ablated_exposure,-0.020666666666666667,0.404,0.404,verb_class_accuracy,diagnostic_interventions_6,6,500,3,intact_exposure
+0.0038,10000,51002,-0.029105230991976958,-0.15404353307116156,aux_ablated_exposure,-0.0952047810976704,0.0136,0.0136,class_preference_score,diagnostic_interventions_6,6,500,3,intact_exposure
+0.0034,10000,51003,-0.010666666666666666,-0.05466666666666666,aux_shuffled_exposure,-0.03266666666666666,0.0136,0.0136,verb_class_accuracy,diagnostic_interventions_6,6,500,3,intact_exposure
+0.0,10000,51004,-0.04823309023575859,-0.1383281950410145,aux_shuffled_exposure,-0.09568179868037502,0.0,0.0006000000000000001,class_preference_score,diagnostic_interventions_6,6,500,3,intact_exposure
+0.3748,10000,51005,0.01333333333333333,-0.038,matched_function_ablated_exposure,-0.012,0.404,0.404,verb_class_accuracy,diagnostic_interventions_6,6,500,3,intact_exposure
+0.0,10000,51006,-0.04757296084055368,-0.11615746760286078,matched_function_ablated_exposure,-0.0830092964184781,0.0,0.0006000000000000001,class_preference_score,diagnostic_interventions_6,6,500,3,intact_exposure
+0.0,10000,51007,-0.057333333333333326,-0.15133333333333335,zero_shot,-0.10133333333333333,0.0,0.0002,verb_class_accuracy,adaptation_check_2,2,500,3,intact_exposure
+0.0,10000,51008,-0.39377027024595695,-0.585086706604467,zero_shot,-0.49207197382673623,0.0,0.0002,class_preference_score,adaptation_check_2,2,500,3,intact_exposure

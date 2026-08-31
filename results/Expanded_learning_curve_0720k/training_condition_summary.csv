@@ -1,0 +1,4 @@
+condition,debug,device,elapsed_seconds,epochs,final_dev_loss,final_train_loss,seed
+original,False,mps,779.12,5,3.1784574724670147,3.2947063887126933,2026
+original,False,mps,739.58,5,3.1991997584318503,3.2980099873674193,2027
+original,False,mps,773.44,5,3.175400438064184,3.302767501761582,2028

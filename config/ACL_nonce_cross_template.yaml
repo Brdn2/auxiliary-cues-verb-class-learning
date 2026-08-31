@@ -1,0 +1,27 @@
+version: ACL_nonce_cross_template_v2
+model_config: config/ACL_confirmatory_aux.yaml
+seed: 72001
+model_seeds: [2026, 2027, 2028]
+base_model_dir: models/legacy_original_full
+output_dir: results/ACL_nonce_cross_template_v2
+adapted_model_dir: models/ACL_nonce_cross_template_v2
+audit_dir: audits/ACL_nonce_cross_template_v2
+nonce_by_class:
+  ditransitive_transfer: dax
+  intransitive: blick
+  mental_communication: fep
+  perception: mip
+  transitive_action: tazz
+sampling:
+  exposure_items_per_class: 80
+  evaluation_items_per_class: 100
+  exposure_frame_types_per_class: 15
+  require_aux_in_every_exposure: true
+  select_high_diagnosticity_aux_contexts: true
+adaptation:
+  conditions: [intact_exposure, aux_ablated_exposure, aux_shuffled_exposure, matched_function_ablated_exposure]
+  epochs: 8
+  batch_size: 16
+  learning_rate: 0.00005
+  weight_decay: 0.0
+  max_length: 128

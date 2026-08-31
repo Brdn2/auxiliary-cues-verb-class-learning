@@ -1,0 +1,20 @@
+Licensing notice
+================
+
+Unless a file says otherwise:
+
+1. Original source code in `src/`, `scripts/`, and `tests/` is licensed under
+   the MIT License in `LICENSES/MIT.txt`.
+2. Original documentation, aggregate result tables, and figures are licensed
+   under Creative Commons Attribution 4.0 International (CC BY 4.0), summarized
+   with a link to the authoritative legal code in `LICENSES/CC-BY-4.0.txt`.
+3. The manuscript source and PDF are shared for scholarly review and citation;
+   any later publisher or proceedings terms take precedence for the published
+   version.
+4. `paper/acl.sty` and `paper/acl_natbib.bst` are third-party ACL style files
+   and retain the notices and terms in those files.
+5. No license in this repository applies to CHILDES, TalkBank, BabyLM, or any
+   raw or derived transcript text. Those materials are not distributed here
+   and remain subject to their upstream terms.
+
+Copyright (c) 2026 Yiyang Liu

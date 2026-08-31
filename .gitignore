@@ -1,0 +1,27 @@
+.DS_Store
+.venv/
+.idea/
+.vscode/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Restricted or locally generated research materials.
+archive/
+build/
+data/
+literature/
+logs/
+models/
+tmp/
+*.docx
+
+# Partial/debug evidence cannot be committed as paper results.
+audits/**/*debug*
+audits/**/*smoke*
+results/**/*debug*
+results/**/*smoke*
+
+# Rebuildable release packages.
+output/public_artifact/
+output/*.zip

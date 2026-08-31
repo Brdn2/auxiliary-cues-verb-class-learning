@@ -1,0 +1,28 @@
+{
+  "chance_accuracy": 0.2,
+  "missing_scales": [],
+  "gates": {
+    "0720k": {
+      "mean_accuracy": 0.5366666666666666,
+      "seeds_accuracy_at_least_0.23": 3,
+      "positive_class_preference_seeds": 3,
+      "max_dominant_prediction_share": 0.39666666666666667,
+      "evaluation_validity_gate": "pass"
+    },
+    "2000k": {
+      "mean_accuracy": 0.6138888888888889,
+      "seeds_accuracy_at_least_0.23": 3,
+      "positive_class_preference_seeds": 3,
+      "max_dominant_prediction_share": 0.3,
+      "evaluation_validity_gate": "pass"
+    },
+    "full": {
+      "mean_accuracy": 0.7216666666666667,
+      "seeds_accuracy_at_least_0.23": 3,
+      "positive_class_preference_seeds": 3,
+      "max_dominant_prediction_share": 0.30666666666666664,
+      "evaluation_validity_gate": "pass"
+    }
+  },
+  "recommendation": "run_aux_followup"
+}

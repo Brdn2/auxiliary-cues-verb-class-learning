@@ -1,0 +1,52 @@
+[
+  {
+    "condition": "AUX_matched_content",
+    "same_utterance_rate": 0.8458037307597196,
+    "global_fallback_rate": 0.15419626924028043,
+    "match_status_counts": {
+      "same_utterance": 632750,
+      "global_exact_stratum": 48165,
+      "global_frequency_position": 5298,
+      "global_frequency": 16251,
+      "global_unstratified": 45641
+    },
+    "target_affected_utterances": 543153,
+    "control_affected_utterances": 539920,
+    "affected_utterance_ratio": 0.994047717678076,
+    "length_smd": -0.055843950902346444,
+    "relative_position_smd": -0.7697178263880315,
+    "verb_distance_smd": 0.05498352349439831,
+    "log_frequency_smd": 1.6958200677978041,
+    "control_pos_counts": {
+      "ADV": 194009,
+      "VERB": 176560,
+      "ADJ": 105475,
+      "NOUN": 272061
+    }
+  },
+  {
+    "condition": "AUX_matched_function",
+    "same_utterance_rate": 0.0,
+    "global_fallback_rate": 1.0,
+    "match_status_counts": {
+      "global_exact_stratum": 636032,
+      "global_frequency_position": 79155,
+      "global_frequency": 32918
+    },
+    "target_affected_utterances": 543153,
+    "control_affected_utterances": 462741,
+    "affected_utterance_ratio": 0.8519533170211708,
+    "length_smd": -0.13410597192362367,
+    "relative_position_smd": -0.06623703063642304,
+    "verb_distance_smd": 0.016623789636236407,
+    "log_frequency_smd": 0.00779538346036441,
+    "control_pos_counts": {
+      "PRON": 296404,
+      "DET": 127296,
+      "SCONJ": 55957,
+      "PART": 61901,
+      "CCONJ": 47016,
+      "ADP": 159531
+    }
+  }
+]

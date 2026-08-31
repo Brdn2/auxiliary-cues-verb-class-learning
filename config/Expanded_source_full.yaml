@@ -1,0 +1,7 @@
+version: Expanded_source_full
+base_source_config: config/Pilot_babylm2026_source.yaml
+source_distribution: CHILDES-train2-MOT-FAT-full-spaCy
+paths:
+  raw_corpus: data/expanded_childes/pos/childes_train2_cds_full_spacy_pos.txt
+  processed_dir: data/processed_expanded_full
+  splits_dir: data/splits_expanded_full

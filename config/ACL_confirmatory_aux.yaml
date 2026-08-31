@@ -1,0 +1,83 @@
+version: ACL_confirmatory_aux_v2
+experiment_design: acl_aux_confirmatory_v2
+source_config: config/Expanded_source_full.yaml
+seed: 2026
+lowercase: true
+source_distribution: CHILDES-train2-MOT-FAT-expanded
+
+paths:
+  raw_corpus: data/expanded_childes/pos/childes_train2_cds_full_spacy_pos.txt
+  processed_dir: data/processed_expanded_full
+  splits_dir: data/splits_expanded_full
+  conditions_dir: data/conditions/ACL_confirmatory_aux_v2
+  audits_dir: audits/ACL_confirmatory_aux_v2
+  results_dir: results/ACL_confirmatory_aux_v2
+  model_dir: models/ACL_confirmatory_aux_v2
+  tokenizer_dir: data/tokenizer/Expanded_shared_full_4k
+
+special_tokens:
+  bos: "<s>"
+  pad: "<pad>"
+  eos: "</s>"
+  unk: "<unk>"
+  mask: "<mask>"
+  fw_mask: "<FW_MASK>"
+  content_mask: "<CONTENT_MASK>"
+  ablation: "<ABL_MASK>"
+
+comp_allowlist: [that, whether, if, because, when]
+categories: [AUX]
+default_train_categories: [AUX]
+ablation_design:
+  matched_controls:
+    - {name: AUX_matched_content, seed: 31001, allowed_pos: [NOUN, VERB, ADJ, ADV], exclude_target_verbs: true}
+    - name: AUX_matched_function
+      seed: 31002
+      allowed_pos: [PRON, DET, ADP, PART, CCONJ, SCONJ]
+      exclude_target_verbs: false
+      matching_overrides: {same_utterance_first: false, frequency_weight: 3.0, relative_position_weight: 1.0, verb_distance_weight: 0.5}
+  identity_shuffle_seed: 32001
+  identity_shuffle_salt: Expanded_learning_curve_full
+  exclude_target_verb_surfaces_from_controls: true
+  write_full_position_audit_gzip: true
+  matching:
+    same_utterance_first: true
+    frequency_weight: 0.30
+    relative_position_weight: 1.00
+    verb_distance_weight: 0.50
+
+tokenizer: {vocab_size: 4000, min_frequency: 2, train_from: full_input_train}
+roberta:
+  hidden_size: 128
+  num_hidden_layers: 2
+  num_attention_heads: 4
+  intermediate_size: 512
+  hidden_dropout_prob: 0.1
+  attention_probs_dropout_prob: 0.1
+  max_position_embeddings_min: 128
+
+training:
+  train_all_categories: true
+  seeds: [2026, 2027, 2028, 2029, 2030]
+  debug_seeds: [2026]
+  epochs: 5
+  batch_size: 16
+  debug_batch_size: 8
+  learning_rate: 0.0005
+  weight_decay: 0.01
+  grad_clip: 1.0
+  mlm_probability: 0.15
+  max_train_batches: null
+  max_eval_batches: null
+  debug_max_train_batches: 1
+  debug_max_eval_batches: 1
+  save_each_epoch: false
+
+evaluation:
+  max_examples: 600
+  debug_max_examples: 5
+  topk_surface: 5
+  class_balanced_candidates: true
+  candidate_seed_offset: 20000
+  max_candidates_per_class: null
+  balance_examples_by_class: true
