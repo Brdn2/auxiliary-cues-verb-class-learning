@@ -57,7 +57,7 @@ We use the CHILDES component distributed with the BabyLM 2026 Strict release, wi
 The researcher-defined evaluation ontology contains five coarse classes: transitive action, intransitive, ditransitive transfer, mental/communication, and perception. The first three partly encode argument-structure distinctions, whereas the latter two are broader lexical-semantic classes; the ontology therefore does not isolate semantics from valency. The 600 evaluation items are balanced at 120 per class and come from 600 distinct corpus records, with 76 target surfaces from 39 lemmas. The class-balanced candidate set contains 21 surfaces per class. At evaluation, only the target verb position is masked; all remaining lexical context is visible. The task thus measures distributional compatibility with this mixed, coarse class ontology, not recovery of a complete lexical meaning.
 
 \paragraph{Metrics.}
-The preregistered primary metric is the class preference score
+The prespecified primary metric is the class preference score
 \begin{equation}
 \begin{aligned}
   \cps(x,y)={}&\operatorname{mean}_{v\in y}\log p(v\mid x) \\
@@ -67,7 +67,7 @@ The preregistered primary metric is the class preference score
 where $y$ is the target class and $v$ ranges over the candidate surfaces. The secondary verb-class accuracy metric selects the highest-scoring candidate surface and assigns its verb class as the prediction. Scores for multi-piece candidates use length-normalized subword log probabilities.
 
 \paragraph{Annotation audit.}
-The exhaustive lexical audit classifies 935,294 of 935,364 AUX-tagged events as instances of canonical or otherwise accepted auxiliary forms; 70 are flagged as likely mistags or transcription/tokenization artifacts. For a deterministic sample of 500 contexts, the automatic labels are withheld from the independent annotator. The reported count is therefore a lexical audit, not human-validated tagging accuracy.
+The exhaustive rule-based lexical audit classifies 935,294 of 935,364 AUX-tagged events as instances of canonical or otherwise accepted auxiliary forms; 70 are flagged as likely mistags or transcription/tokenization artifacts. The reported count is not human-validated tagging accuracy.
 
 \section{Model and interventions}
 
@@ -107,7 +107,7 @@ Each class is assigned one corpus-absent nonce form that tokenizes into exactly 
 
 \subsection{Confirmatory natural-corpus ablation}
 
-The preregistered primary contrasts compare AUX-identity ablation with each matched control on \cps{}. An AUX-specific claim requires both hierarchical confidence intervals to exclude zero in the predicted direction and requires the predicted direction to be observed in at least four of the five seeds. We draw 10,000 paired hierarchical-bootstrap samples: each draw resamples model seeds, then resamples the 600 paired item differences within each selected seed \citep{efron1979}. This procedure does not separately resample verb, template, transcript, or child clusters. For the nonce contrasts, we report two-sided bootstrap $p$-values adjusted within the prespecified metric-by-intervention family using Holm's procedure \citep{holm1979}. We interpret intervals, adjusted tests, and seedwise directions jointly, following recommendations to make uncertainty reporting explicit in NLP experiments \citep{dror2018}.
+The prespecified primary contrasts compare AUX-identity ablation with each matched control on \cps{}. An AUX-specific claim requires both hierarchical confidence intervals to exclude zero in the predicted direction and requires the predicted direction to be observed in at least four of the five seeds. We draw 10,000 paired hierarchical-bootstrap samples: each draw resamples model seeds, then resamples the 600 paired item differences within each selected seed \citep{efron1979}. This procedure does not separately resample verb, template, transcript, or child clusters. For the nonce contrasts, we report two-sided bootstrap $p$-values adjusted within the prespecified metric-by-intervention family using Holm's procedure \citep{holm1979}. We interpret intervals, adjusted tests, and seedwise directions jointly, following recommendations to make uncertainty reporting explicit in NLP experiments \citep{dror2018}.
 
 \section{Results}
 
@@ -128,11 +128,11 @@ Across the three full-corpus seeds, AUX log-odds scores correlate with binary it
 
 \subsection{Natural-corpus intervention}
 
-Table~\ref{tab:confirmatory} reports both the secondary accuracy metric and the preregistered \cps{} metric for every training intervention.
+Table~\ref{tab:confirmatory} reports both the secondary accuracy metric and the prespecified \cps{} metric for every training intervention.
 \input{tables/confirmatory.tex}
 \input{tables/confirmatory_results_text.tex}
 
-The secondary accuracy column shows the same broad degradation pattern: the Original condition reaches 71.1\%, the two AUX-disrupting conditions reach 61.0\% (AUX-identity ablation) and 60.8\% (AUX-identity shuffle), and the matched controls retain 68.5--69.1\% accuracy. On the preregistered metric, however, replacing AUX identities reduces class preference relative to the Original condition, but the reduction is not reliably greater than that produced by either matched-damage control. The two specificity intervals include zero, so the study cannot distinguish between the absence of an AUX-specific effect and an effect too small for the present design to resolve. Table~\ref{tab:confirmatory} therefore supports sensitivity to AUX-identity replacement and corpus damage, but does not meet the preregistered criterion for AUX specificity.
+The secondary accuracy column shows the same broad degradation pattern: the Original condition reaches 71.1\%, the two AUX-disrupting conditions reach 61.0\% (AUX-identity ablation) and 60.8\% (AUX-identity shuffle), and the matched controls retain 68.5--69.1\% accuracy. On the prespecified metric, however, replacing AUX identities reduces class preference relative to the Original condition, but the reduction is not reliably greater than that produced by either matched-damage control. The two specificity intervals include zero, so the study cannot distinguish between the absence of an AUX-specific effect and an effect too small for the present design to resolve. Table~\ref{tab:confirmatory} therefore supports sensitivity to AUX-identity replacement and corpus damage, but does not meet the prespecified criterion for AUX specificity.
 
 \subsection{Nonce-verb transfer}
 
@@ -149,7 +149,7 @@ Intact exposure improves accuracy by 10.13 points over zero-shot evaluation and 
 \section{Discussion}
 
 \paragraph{Total contribution and cue specificity.}
-Replacing AUX identities with a shared token reduces performance relative to unchanged training input, but the reduction is not reliably greater than that produced by either matched corpus-damage control on the preregistered metric. Because replacement preserves AUX occurrence and position while changing both form identity and the training distribution, the contrast between the Original and AUX-identity-ablation conditions does not estimate the effect of deleting all auxiliary information. The matched comparisons do not establish an AUX-specific reduction, and their intervals leave room for a small effect.
+Replacing AUX identities with a shared token reduces performance relative to unchanged training input, but the reduction is not reliably greater than that produced by either matched corpus-damage control on the prespecified metric. Because replacement preserves AUX occurrence and position while changing both form identity and the training distribution, the contrast between the Original and AUX-identity-ablation conditions does not estimate the effect of deleting all auxiliary information. The matched comparisons do not establish an AUX-specific reduction, and their intervals leave room for a small effect.
 
 \paragraph{Evidence for cue integration.}
 AUX-only statistics predict verb class above chance, and their diagnosticity is modestly associated with model behavior. POS frames and lexical context are stronger predictors. In the nonce task, AUX-identity shuffling weakens cross-template transfer while preserving the AUX inventory and disrupting its form--context mappings. The matched-function intervention also reduces the continuous preference measure. An alternative explanation is that shuffling lowers local grammatical compatibility, whereas replacement conditions retain position and boundary information; a further possibility is general sensitivity to corpus damage. The present design does not distinguish these mechanisms. It is compatible with a redundant multi-cue account, but does not directly test cue integration.
@@ -159,7 +159,7 @@ The results support a limited claim about text-based learnability: auxiliary pat
 
 \section{Conclusion}
 
-Small masked language models learn coarse verb-class expectations from child-directed text, with auxiliary patterns contributing as part of a broader distributional system. Replacing AUX identities reduces class preference relative to unmodified input, but does not meet the preregistered criterion for an effect beyond either matched-damage control. The baseline and nonce experiments provide compatible evidence that auxiliary patterns are informative, while the stronger lexical and POS-frame baselines and the matched-function-control results do not establish that auxiliaries are uniquely informative. The evidence is compatible with a graded, multi-cue distributional account and illustrates why linguistic ablations require damage-matched controls.
+Small masked language models learn coarse verb-class expectations from child-directed text, with auxiliary patterns contributing as part of a broader distributional system. Replacing AUX identities reduces class preference relative to unmodified input, but does not meet the prespecified criterion for an effect beyond either matched-damage control. The baseline and nonce experiments provide compatible evidence that auxiliary patterns are informative, while the stronger lexical and POS-frame baselines and the matched-function-control results do not establish that auxiliaries are uniquely informative. The evidence is compatible with a graded, multi-cue distributional account and illustrates why linguistic ablations require damage-matched controls.
 
 \section*{Limitations}
 

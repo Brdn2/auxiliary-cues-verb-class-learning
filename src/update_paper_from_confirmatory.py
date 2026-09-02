@@ -211,29 +211,29 @@ def render_results(
     total_significant = float(total["ci95_high"]) < 0
 
     if specific:
-        decision = "The preregistered criterion for an AUX-specific contribution is therefore satisfied."
+        decision = "The prespecified criterion for an AUX-specific contribution is therefore satisfied."
         abstract = (
             f"In the five-seed natural-corpus experiment, AUX ablation lowers CPS by "
             f"{abs(float(total['delta_comparison_minus_reference'])):.3f} relative to Original and satisfies "
-            "the preregistered AUX-specificity criterion."
+            "the prespecified AUX-specificity criterion."
         )
     elif total_significant:
         decision = (
-            "The target ablation shows an overall AUX contribution, but the preregistered criterion "
+            "The target ablation shows an overall AUX contribution, but the prespecified criterion "
             "for AUX specificity against both controls is not satisfied."
         )
         abstract = (
             f"In the five-seed natural-corpus experiment, AUX-identity ablation lowers CPS by "
             f"{abs(float(total['delta_comparison_minus_reference'])):.3f} relative to the Original condition "
             f"(95\\% CI [{float(total['ci95_low']):.3f}, {float(total['ci95_high']):.3f}]), but does not satisfy "
-            "the preregistered specificity criterion against either matched-damage control."
+            "the prespecified specificity criterion against either matched-damage control."
         )
     else:
         decision = (
-            "The preregistered natural-corpus experiment does not establish a reliable overall AUX effect "
+            "The prespecified natural-corpus experiment does not establish a reliable overall AUX effect "
             "or AUX specificity."
         )
-        abstract = "The five-seed natural-corpus experiment does not establish a reliable auxiliary-specific contribution under our preregistered criterion."
+        abstract = "The five-seed natural-corpus experiment does not establish a reliable auxiliary-specific contribution under our prespecified criterion."
 
     original_cps = statistics.mean(means["original"]["class_preference_score"])
     target_cps = statistics.mean(means["AUX_target_ablation"]["class_preference_score"])

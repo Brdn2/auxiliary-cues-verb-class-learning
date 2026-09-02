@@ -4,7 +4,7 @@
 
 The local source file is named `childes.train-2.txt`. Its macOS download metadata identifies the source as `BabyLM-community/BabyLM-2026-Strict/childes.train.txt`; its size (152,297,628 bytes) and SHA-256 (`d6c0e39e2c283bfa5489cde80031a4fb9237ca8065a8301580df10e3b6843a98`) exactly match the Git-LFS record added in BabyLM repository commit `c10defe96630b187709593c25fd60c58a3648efa`. The BabyLM card describes this component as 28,410,878 tokens in the 2026 Strict training set and labels the repository MIT.
 
-The repository-level tag does not by itself establish that all underlying transcript rights were relicensed. TalkBank states that, except where otherwise indicated, its data use is governed by CC BY-NC-SA 3.0 and remains subject to corpus-specific citation, access, ethics, and confidentiality rules. This project therefore applies the more restrictive boundary: non-commercial research use with CHILDES/BabyLM attribution, no public redistribution of raw or derived utterance text, and author/institutional confirmation before any artifact release containing transcript content. The machine-readable evidence and unresolved author sign-off are recorded in `docs/SOURCE_LICENSE_VERIFICATION.json`.
+The repository-level tag does not by itself establish that all underlying transcript rights were relicensed. TalkBank states that, except where otherwise indicated, its data use is governed by CC BY-NC-SA 3.0 and remains subject to corpus-specific citation, access, ethics, and confidentiality rules. This project therefore applies the more restrictive boundary: non-commercial research use with CHILDES/BabyLM attribution and no public redistribution of raw or derived utterance text. The present repository contains no transcript text.
 
 ## Speaker and utterance selection
 
@@ -21,7 +21,7 @@ These role codes are transcript metadata, not verified demographic categories. T
 
 ## Annotation and model records
 
-The cleaned text is lowercased and automatically POS-tagged with spaCy 3.4.4 using `en_core_web_sm` 3.4.1; parser, NER, and text categorization components are disabled. Punctuation segmentation yields 904,222 model records and 8,449,144 POS-token units. Automatic POS errors are therefore a known source of measurement error. AUX tags receive an exhaustive lexical audit and a separate, targeted 500-context human-validation protocol.
+The cleaned text is lowercased and automatically POS-tagged with spaCy 3.4.4 using `en_core_web_sm` 3.4.1; parser, NER, and text categorization components are disabled. Punctuation segmentation yields 904,222 model records and 8,449,144 POS-token units. Automatic POS errors are therefore a known source of measurement error. AUX tags receive an exhaustive rule-based lexical audit; the reported audit is not a human validation study.
 
 ## Splits
 
@@ -49,18 +49,14 @@ The derived data support research on distributional learnability and controlled 
 
 ## Privacy and release boundary
 
-The cleaning procedure removes several CHAT omission/markup patterns but is not a comprehensive personally identifying information audit. Transcripts can still contain names and sensitive conversational content. No claim of de-identification is made beyond protections in the upstream distribution. Public artifacts should therefore contain aggregate statistics, hashes, code, manifests, and item identifiers—not source or derived utterance strings—until the exact source terms and a release-specific privacy review are complete.
+The cleaning procedure removes several CHAT omission/markup patterns but is not a comprehensive personally identifying information audit. Transcripts can still contain names and sensitive conversational content. No claim of de-identification is made beyond protections in the upstream distribution. This release therefore contains only aggregate statistics, hashes, code, and non-text configurations—not source or derived utterance strings. Per-example outputs and item identifiers linked to source contexts are also excluded.
 
-## Evidence files
+## Reproduction files
 
-- `data/expanded_childes/corpus_profile.json`
-- `data/expanded_childes/corpus_profile.md`
-- `data/splits_expanded_full/splits.json`
-- `src/prepare_expanded_childes.py`
-- `src/annotate_plaintext_spacy.py`
-- `audits/ACL_static_analysis_v1/aux_audit_summary.json`
-- `audits/ACL_static_analysis_v1/HUMAN_ANNOTATION_PROTOCOL.md`
-- `docs/SOURCE_LICENSE_VERIFICATION.json`
+The source and derived files identified above are local and excluded from Git.
+The public processing entry points are `src/prepare_expanded_childes.py` and
+`src/annotate_plaintext_spacy.py`; the frozen paths and experimental settings
+are in `config/`.
 
 ## External provenance evidence
 

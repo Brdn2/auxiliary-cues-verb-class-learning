@@ -9,5 +9,5 @@
     "AUX_specific_vs_content": 3,
     "AUX_specific_vs_function": 4
   },
-  "interpretation": "The target ablation shows an overall AUX contribution, but the preregistered criterion for AUX specificity against both controls is not satisfied."
+  "interpretation": "The target ablation shows an overall AUX contribution, but the prespecified criterion for AUX specificity against both controls is not satisfied."
 }

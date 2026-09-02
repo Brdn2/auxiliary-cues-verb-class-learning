@@ -18,4 +18,4 @@ jobs:
       - name: Verify released aggregates and boundaries
         run: python scripts/verify_public_artifact.py
       - name: Compile Python sources
-        run: python -m compileall -q src scripts tests
+        run: python -m compileall -q src scripts

@@ -1,8 +1,0 @@
-{
-  "status": "verified",
-  "source_artifact": "Exact name and version of the CHILDES-derived local source artifact",
-  "terms_or_license": "Authoritative license or terms URL/citation and the applicable redistribution boundary",
-  "verified_by": "Author name or initials",
-  "verified_at": "YYYY-MM-DD",
-  "notes": "Record whether raw, cleaned, processed, and derived text may be redistributed. Do not copy this example to the live filename until every field has been verified."
-}

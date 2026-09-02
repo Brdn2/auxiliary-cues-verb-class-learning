@@ -8,6 +8,7 @@ __pycache__/
 
 # Restricted or locally generated research materials.
 archive/
+audits/
 build/
 data/
 literature/
@@ -21,6 +22,11 @@ audits/**/*debug*
 audits/**/*smoke*
 results/**/*debug*
 results/**/*smoke*
+results/**/mvp_per_example*.csv
+results/**/nonce_per_example.csv
+results/**/baseline_per_example.csv
+results/**/item_cue_features.csv
+results/**/aux_context_sample*.csv
 
 # Rebuildable release packages.
 output/public_artifact/
