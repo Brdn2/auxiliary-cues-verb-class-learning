@@ -20,10 +20,10 @@ from tokenizers import ByteLevelBPETokenizer
 from transformers import RobertaConfig, RobertaForMaskedLM, RobertaTokenizerFast
 
 from data_utils import build_verb_maps, build_vocab, load_prepared, load_split_records, parse_corpus, save_prepared, split_records
-from pilot_utils import ensure_dirs, load_config, load_json, masked_mean, project_path, save_json, set_seed, write_jsonl
+from experiment_utils import ensure_dirs, load_config, load_json, masked_mean, project_path, save_json, set_seed, write_jsonl
 
 
-CONFIG_PATH = Path(__file__).resolve().parents[1] / "config" / "Pilot_v4_roberta.yaml"
+CONFIG_PATH = Path(__file__).resolve().parents[1] / "configs" / "natural_corpus.yaml"
 METRICS = [
     "target_verb_logprob",
     "target_verb_logprob_sum",

@@ -1,12 +1,12 @@
-version: Pilot_babylm2026_source
+version: source_v1
 seed: 2026
 lowercase: true
-source_distribution: CHILDES-BabyLM-2026-Strict-Small-spaCy
+source_distribution: CHILDES-train2-MOT-FAT-full-spaCy
 
 paths:
-  raw_corpus: data/raw/childes_BabyLM2026_StrictSmall_cleaned_spacy_pos.txt
-  processed_dir: data/processed_babylm2026
-  splits_dir: data/splits_babylm2026
+  raw_corpus: data/expanded_childes/pos/childes_train2_cds_full_spacy_pos.txt
+  processed_dir: data/processed_expanded_full
+  splits_dir: data/splits_expanded_full
 
 split: {train: 0.8, dev: 0.1, test: 0.1}
 

@@ -10,7 +10,8 @@ __pycache__/
 archive/
 audits/
 build/
-data/
+/data/*
+!/data/README.md
 literature/
 logs/
 models/

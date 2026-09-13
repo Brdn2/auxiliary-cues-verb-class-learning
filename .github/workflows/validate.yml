@@ -16,6 +16,6 @@ jobs:
         with:
           python-version: "3.11"
       - name: Verify released aggregates and boundaries
-        run: python scripts/verify_public_artifact.py
+        run: python scripts/verify_results.py
       - name: Compile Python sources
         run: python -m compileall -q src scripts

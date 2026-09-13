@@ -8,7 +8,7 @@ The repository-level tag does not by itself establish that all underlying transc
 
 ## Speaker and utterance selection
 
-`src/prepare_expanded_childes.py` reads CHAT speaker lines and retains only `MOT` and `FAT` roles. The frozen cleaning rule in `data/expanded_childes/corpus_profile.json`:
+`src/preprocess_childes.py` reads CHAT speaker lines and retains only `MOT` and `FAT` roles. The frozen cleaning rule in `data/expanded_childes/corpus_profile.json`:
 
 - retains utterances of 5--80 whitespace-delimited words;
 - rejects lines containing `[`, `xxx`, `yyy`, or `www`;
@@ -54,9 +54,9 @@ The cleaning procedure removes several CHAT omission/markup patterns but is not 
 ## Reproduction files
 
 The source and derived files identified above are local and excluded from Git.
-The public processing entry points are `src/prepare_expanded_childes.py` and
-`src/annotate_plaintext_spacy.py`; the frozen paths and experimental settings
-are in `config/`.
+The public processing entry points are `src/preprocess_childes.py` and
+`src/annotate_pos.py`; the frozen paths and experimental settings are in
+`configs/`.
 
 ## External provenance evidence
 

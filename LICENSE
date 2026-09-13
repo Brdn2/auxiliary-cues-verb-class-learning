@@ -3,7 +3,7 @@ Licensing notice
 
 Unless a file says otherwise:
 
-1. Original source code in `src/`, `scripts/`, and `tests/` is licensed under
+1. Original source code in `src/` and `scripts/` is licensed under
    the MIT License in `LICENSES/MIT.txt`.
 2. Original documentation, aggregate result tables, and figures are licensed
    under Creative Commons Attribution 4.0 International (CC BY 4.0), summarized

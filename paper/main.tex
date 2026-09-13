@@ -91,8 +91,8 @@ We compare performance at 720k tokens, 2M tokens, and the full training scale un
 
 \begin{figure*}[tb]
   \centering
-  \includegraphics[width=.48\linewidth]{figures/learning_curve.pdf}\hfill
-  \includegraphics[width=.48\linewidth]{figures/baseline_gradient.pdf}
+  \includegraphics[width=.48\linewidth]{../figures/learning_curve.pdf}\hfill
+  \includegraphics[width=.48\linewidth]{../figures/baseline_gradient.pdf}
   \caption{Verb-class accuracy by training scale (left) and information source at full scale (right). The scale curve uses the three Original-condition checkpoints with seeds 2026--2028, which are also included in Table~\ref{tab:confirmatory}; Table~\ref{tab:confirmatory} adds seeds 2029--2030. Points are individual seeds; error bars show seed-level standard deviations. All statistical baselines exclude the target verb. The dashed line marks the 20\% balanced-class chance level.}
   \label{fig:scale-baselines}
 \end{figure*}
@@ -121,7 +121,7 @@ Across the three full-corpus seeds, AUX log-odds scores correlate with binary it
 
 \begin{figure}[tb]
   \centering
-  \includegraphics[width=.94\columnwidth]{figures/cue_behavior.pdf}
+  \includegraphics[width=.94\columnwidth]{../figures/cue_behavior.pdf}
   \caption{Mean class preference by decile of the training-corpus AUX log-odds score for the target class. Each equal-count bin contains 60 evaluation items. Lines show three independently initialized full-corpus models; the plot is descriptive and does not establish a monotonic or causal relation.}
   \label{fig:cue-behavior}
 \end{figure}
@@ -141,7 +141,7 @@ Intact exposure improves accuracy by 10.13 points over zero-shot evaluation and 
 \input{tables/nonce.tex}
 \begin{figure}[tb]
   \centering
-  \includegraphics[width=.94\columnwidth]{figures/nonce_effects.pdf}
+  \includegraphics[width=.94\columnwidth]{../figures/nonce_effects.pdf}
   \caption{Accuracy advantage of intact nonce-form exposure over each comparison condition. Whiskers are unadjusted 95\% hierarchical paired-bootstrap intervals over three base-model seeds and evaluation items. Holm-adjusted p-values in the text use a different inferential summary, so an interval crossing zero here should not be read as a multiplicity-adjusted test.}
   \label{fig:nonce-effects}
 \end{figure}

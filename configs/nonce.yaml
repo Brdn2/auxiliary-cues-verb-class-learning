@@ -1,11 +1,11 @@
-version: ACL_nonce_cross_template_v2
-model_config: config/ACL_confirmatory_aux.yaml
+version: nonce_v2
+model_config: configs/natural_corpus.yaml
 seed: 72001
 model_seeds: [2026, 2027, 2028]
-base_model_dir: models/ACL_confirmatory_aux_v2/original
-output_dir: results/ACL_nonce_cross_template_v2
-adapted_model_dir: models/ACL_nonce_cross_template_v2
-audit_dir: audits/ACL_nonce_cross_template_v2
+base_model_dir: models/natural_corpus/original
+output_dir: results/nonce
+adapted_model_dir: models/nonce
+audit_dir: audits/nonce
 nonce_by_class:
   ditransitive_transfer: dax
   intransitive: blick

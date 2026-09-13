@@ -8,8 +8,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from acl_statistics import hierarchical_paired_bootstrap
-from update_paper_from_confirmatory import validate_complete
+from statistical_analysis import hierarchical_paired_bootstrap
+from update_paper import validate_complete
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,8 +74,8 @@ def summarize_training(model_dir: Path, expected_seeds: set[int], results_dir: P
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--results-dir", default=str(ROOT / "results/ACL_confirmatory_aux_v2"))
-    parser.add_argument("--model-dir", default=str(ROOT / "models/ACL_confirmatory_aux_v2"))
+    parser.add_argument("--results-dir", default=str(ROOT / "results/natural_corpus"))
+    parser.add_argument("--model-dir", default=str(ROOT / "models/natural_corpus"))
     parser.add_argument("--samples", type=int, default=10000)
     parser.add_argument("--seed", type=int, default=81001)
     args = parser.parse_args()

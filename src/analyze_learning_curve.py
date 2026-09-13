@@ -20,7 +20,7 @@ def main() -> None:
     rows: list[dict[str, object]] = []
     missing: list[str] = []
     for scale in SCALES:
-        results = PROJECT / "results" / f"Expanded_learning_curve_{scale}"
+        results = PROJECT / "results" / "learning_curve" / scale
         metrics_path = results / "metrics_summary.csv"
         per_item_path = results / "mvp_per_example.csv"
         if not metrics_path.exists() or not per_item_path.exists():
@@ -43,10 +43,10 @@ def main() -> None:
                 "dominant_prediction_share": dominant_count / max(total, 1),
             })
 
-    output_dir = PROJECT / "results" / "Expanded_learning_curve_summary"
+    output_dir = PROJECT / "results" / "statistics"
     output_dir.mkdir(parents=True, exist_ok=True)
     if rows:
-        with (output_dir / "original_learning_curve.csv").open("w", encoding="utf-8", newline="") as handle:
+        with (output_dir / "learning_curve.csv").open("w", encoding="utf-8", newline="") as handle:
             writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
             writer.writeheader()
             writer.writerows(rows)

@@ -6,6 +6,5 @@ cd "$project_dir"
 export PYTHONPATH="$project_dir/src"
 ACL_PYTHON_BIN="${ACL_PYTHON_BIN:-python3}"
 
-"$ACL_PYTHON_BIN" src/run_confirmatory_ablation.py \
-  --config config/ACL_confirmatory_aux.yaml \
-  --resume
+"$ACL_PYTHON_BIN" src/run_nonce.py --config configs/nonce.yaml
+"$ACL_PYTHON_BIN" src/summarize_nonce.py --results-dir results/nonce

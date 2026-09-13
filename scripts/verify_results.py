@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-FORBIDDEN_ROOTS = {"data", "models", "logs", "tmp", "archive", "audits", "literature"}
+FORBIDDEN_ROOTS = {"models", "logs", "tmp", "archive", "audits", "literature"}
 FORBIDDEN_RESULT_PATTERNS = {
     "mvp_per_example*.csv",
     "nonce_per_example.csv",
@@ -23,10 +23,10 @@ REQUIRED = {
     "CITATION.cff",
     "LICENSE",
     "README.md",
-    "docs/DATA_STATEMENT.md",
+    "data/README.md",
     "output/pdf/paper.pdf",
     "paper/main.tex",
-    "results/ACL_confirmatory_aux_v2/CONFIRMATORY_DECISION.json",
+    "results/natural_corpus/CONFIRMATORY_DECISION.json",
 }
 
 
@@ -49,6 +49,14 @@ def main() -> None:
     if leaked_roots:
         raise AssertionError(f"restricted roots present in public artifact: {leaked_roots}")
 
+    leaked_data = sorted(
+        str(path.relative_to(ROOT))
+        for path in (ROOT / "data").glob("**/*")
+        if path.is_file() and path != ROOT / "data/README.md"
+    )
+    if leaked_data:
+        raise AssertionError(f"restricted data files present: {leaked_data}")
+
     leaked_results = sorted(
         str(path.relative_to(ROOT))
         for pattern in FORBIDDEN_RESULT_PATTERNS
@@ -57,7 +65,7 @@ def main() -> None:
     if leaked_results:
         raise AssertionError(f"restricted result files present: {leaked_results}")
 
-    curve = rows("results/Expanded_learning_curve_summary/original_learning_curve.csv")
+    curve = rows("results/statistics/learning_curve.csv")
     by_scale: dict[str, list[float]] = {}
     for row in curve:
         by_scale.setdefault(row["scale"], []).append(float(row["verb_class_accuracy"]))
@@ -66,7 +74,7 @@ def main() -> None:
 
     baselines = {
         row["baseline"]: float(row["accuracy"])
-        for row in rows("results/ACL_static_analysis_v1/baseline_summary.csv")
+        for row in rows("results/statistics/baselines.csv")
         if row["seed"] == "deterministic"
     }
     close(baselines["aux_only_nb"], 0.305)
@@ -76,7 +84,7 @@ def main() -> None:
     confirmatory = {
         (row["contrast_label"], row["metric"]): row
         for row in rows(
-            "results/ACL_confirmatory_aux_v2/confirmatory_hierarchical_bootstrap.csv"
+            "results/natural_corpus/confirmatory_hierarchical_bootstrap.csv"
         )
     }
     total = confirmatory[("total_AUX_effect", "class_preference_score")]
@@ -85,7 +93,7 @@ def main() -> None:
     close(float(total["ci95_high"]), -0.0847858851)
 
     decision = json.loads(
-        (ROOT / "results/ACL_confirmatory_aux_v2/CONFIRMATORY_DECISION.json").read_text(
+        (ROOT / "results/natural_corpus/CONFIRMATORY_DECISION.json").read_text(
             encoding="utf-8"
         )
     )
@@ -94,7 +102,7 @@ def main() -> None:
 
     nonce = {
         (row["comparison"], row["metric"]): row
-        for row in rows("results/ACL_nonce_cross_template_v2/hierarchical_bootstrap.csv")
+        for row in rows("results/nonce/hierarchical_bootstrap.csv")
     }
     shuffle_accuracy = nonce[("aux_shuffled_exposure", "verb_class_accuracy")]
     shuffle_cps = nonce[("aux_shuffled_exposure", "class_preference_score")]

@@ -49,8 +49,8 @@ def hierarchical_paired_bootstrap(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", default=str(ROOT / "results/Expanded_learning_curve_full/mvp_per_example.csv"))
-    parser.add_argument("--output", default=str(ROOT / "results/ACL_statistics/legacy_hierarchical_bootstrap.csv"))
+    parser.add_argument("--input", default=str(ROOT / "results/learning_curve/full/mvp_per_example.csv"))
+    parser.add_argument("--output", default=str(ROOT / "results/statistics/learning_curve_bootstrap.csv"))
     parser.add_argument("--samples", type=int, default=10000)
     parser.add_argument("--seed", type=int, default=51001)
     parser.add_argument("--reference", default="original")

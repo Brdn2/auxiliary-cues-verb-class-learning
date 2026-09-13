@@ -13,7 +13,7 @@ import numpy as np
 import yaml
 from scipy.stats import pointbiserialr, spearmanr
 
-from run_pilot_v4_roberta import load_merged_config, select_mvp_examples
+from train import load_merged_config, select_mvp_examples
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -208,7 +208,7 @@ def evaluate_baselines(
         {"baseline": name, "seed": seed, "n_examples": len(values), "accuracy": sum(values) / len(values)}
         for (name, seed), values in sorted(grouped.items())
     ]
-    write_csv(output_dir / "baseline_summary.csv", summary)
+    write_csv(output_dir / "baselines.csv", summary)
     return rows
 
 
@@ -276,15 +276,15 @@ def cue_analysis(
             "seed": seed, "n": len(subset), "spearman_aux_logodds_vs_cps": rho, "spearman_p": rho_p,
             "pointbiserial_aux_logodds_vs_accuracy": point, "pointbiserial_p": point_p,
         })
-    write_csv(output_dir / "cue_predictive_correlations.csv", correlation_rows)
+    write_csv(output_dir / "cue_correlations.csv", correlation_rows)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default=str(ROOT / "config/ACL_static_analysis.yaml"))
+    parser.add_argument("--config", default=str(ROOT / "configs/static_analysis.yaml"))
     args = parser.parse_args()
     cfg = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
-    model_cfg = load_merged_config(ROOT / "config/Expanded_learning_curve_base.yaml")
+    model_cfg = load_merged_config(ROOT / "configs/learning_curve.yaml")
     records = read_jsonl(ROOT / cfg["paths"]["records"])
     splits = json.loads((ROOT / cfg["paths"]["splits"]).read_text(encoding="utf-8"))
     audit_dir = ROOT / cfg["paths"]["audit_dir"]

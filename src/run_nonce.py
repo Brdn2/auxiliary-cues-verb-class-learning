@@ -15,8 +15,8 @@ from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import DataLoader, Dataset
 from transformers import RobertaForMaskedLM
 
-from pilot_utils import masked_mean, set_seed
-from run_pilot_v4_roberta import (
+from experiment_utils import masked_mean, set_seed
+from train import (
     candidate_metrics,
     load_merged_config,
     load_tokenizer,
@@ -278,7 +278,7 @@ def evaluate_model(model, tokenizer, evaluations: list[dict[str, Any]], nonce_by
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default=str(ROOT / "config/ACL_nonce_cross_template.yaml"))
+    parser.add_argument("--config", default=str(ROOT / "configs/nonce.yaml"))
     args = parser.parse_args()
     cfg = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
     model_cfg = load_merged_config(ROOT / cfg["model_config"])

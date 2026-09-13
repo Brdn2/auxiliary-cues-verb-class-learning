@@ -1,6 +1,6 @@
-version: Expanded_learning_curve_base
+version: learning_curve_v1
 experiment_design: target_random_identity_ablation_v1
-source_config: config/Expanded_source_full.yaml
+source_config: configs/source.yaml
 seed: 2026
 lowercase: true
 source_distribution: CHILDES-train2-MOT-FAT-expanded
@@ -8,11 +8,11 @@ paths:
   raw_corpus: data/expanded_childes/pos/childes_train2_cds_full_spacy_pos.txt
   processed_dir: data/processed_expanded_full
   splits_dir: data/splits_expanded_full
-  conditions_dir: data/conditions/Expanded_learning_curve_base
-  audits_dir: audits/Expanded_learning_curve_base
-  results_dir: results/Expanded_learning_curve_base
-  model_dir: models/Expanded_learning_curve_base
-  tokenizer_dir: data/tokenizer/Expanded_learning_curve_base
+  conditions_dir: data/conditions/learning_curve
+  audits_dir: audits/learning_curve
+  results_dir: results/learning_curve
+  model_dir: models/learning_curve
+  tokenizer_dir: data/tokenizer/learning_curve
 special_tokens:
   bos: "<s>"
   pad: "<pad>"

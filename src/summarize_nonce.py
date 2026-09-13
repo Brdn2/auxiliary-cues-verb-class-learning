@@ -8,7 +8,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from acl_statistics import hierarchical_paired_bootstrap
+from statistical_analysis import hierarchical_paired_bootstrap
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -103,7 +103,7 @@ def add_holm_columns(rows: list[dict[str, Any]]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Validate and summarize the diagnostic nonce experiment.")
-    parser.add_argument("--results-dir", default=str(ROOT / "results/ACL_nonce_cross_template_v2"))
+    parser.add_argument("--results-dir", default=str(ROOT / "results/nonce"))
     parser.add_argument("--samples", type=int, default=10000)
     parser.add_argument("--seed", type=int, default=51001)
     args = parser.parse_args()

@@ -8,8 +8,8 @@ from pathlib import Path
 
 import torch
 
-from pilot_utils import masked_mean, set_seed
-from run_pilot_v4_roberta import (
+from experiment_utils import masked_mean, set_seed
+from train import (
     build_verb_maps,
     candidate_metrics,
     candidate_surfaces_for_evaluation,
@@ -34,9 +34,9 @@ def write_csv(path: Path, rows: list[dict]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default=str(ROOT / "config/ACL_confirmatory_aux.yaml"))
+    parser.add_argument("--config", default=str(ROOT / "configs/natural_corpus.yaml"))
     parser.add_argument("--seeds", default="61001,61002,61003,61004,61005")
-    parser.add_argument("--output-dir", default=str(ROOT / "results/ACL_random_init"))
+    parser.add_argument("--output-dir", default=str(ROOT / "results/statistics"))
     args = parser.parse_args()
     config = load_merged_config(Path(args.config))
     tokenizer = load_tokenizer(config)
@@ -77,8 +77,8 @@ def main() -> None:
         }
         for seed, items in sorted(grouped.items())
     ]
-    write_csv(output_dir / "metrics_summary.csv", summary)
-    (output_dir / "run_summary.json").write_text(json.dumps({"device": str(device), "seeds": seeds, "examples": len(examples)}, indent=2) + "\n", encoding="utf-8")
+    write_csv(output_dir / "random_init.csv", summary)
+    (output_dir / "random_init_run.json").write_text(json.dumps({"device": str(device), "seeds": seeds, "examples": len(examples)}, indent=2) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

@@ -4,107 +4,118 @@ Research materials for the ACL-format course paper **“Are Auxiliary Cues
 Uniquely Informative for Coarse Verb-Class Learning in Masked Language Models
 Trained on CHILDES?”**
 
-The paper studies whether English auxiliary identity contributes uniquely to
+[Read the paper](output/pdf/paper.pdf)
+
+The study asks whether English auxiliary identity contributes uniquely to
 coarse verb-class expectations in small masked language models trained from
-scratch on child-directed speech. The supported conclusion is deliberately
-narrow: auxiliary information is useful within a redundant distributional
-system, but the matched-control experiments do not establish an AUX-specific
+scratch on child-directed speech. The matched-control experiments support a
+narrow conclusion: auxiliary information is useful within a redundant
+distributional system, but the evidence does not establish an AUX-specific
 effect.
 
-[Read the paper (PDF)](output/pdf/paper.pdf)
-
-![Training-scale and baseline results](paper/figures/baseline_gradient.png)
+![Training-scale and baseline results](figures/baseline_gradient.png)
 
 ## Main results
 
-- Five-way verb-class accuracy increases from **53.7%** at 720k training
-  tokens to **72.2%** at the full training scale.
+- Five-way verb-class accuracy rises from **53.7%** at 720k training tokens to
+  **72.2%** at the full training scale.
 - Leakage-controlled accuracies are **30.5%** for AUX-only Naive Bayes,
   **44.5%** for local POS frames, and **52.0%** for lexical context.
-- AUX-identity ablation lowers the five-seed class preference score by
-  **0.144** relative to unmodified input, but the loss is not reliably larger
-  than both matched-damage controls.
-- In the nonce-form experiment, shuffling AUX identities lowers cross-template
+- AUX-identity ablation lowers five-seed class preference by **0.144** relative
+  to unmodified input, but not reliably more than both matched-damage controls.
+- In the nonce experiment, shuffling AUX identities lowers cross-template
   accuracy by **3.27 percentage points** and class preference by **0.096**.
 
-## Repository contents
+## Repository structure
 
-| Path | Contents |
+| Path | Purpose |
 |---|---|
-| `paper/` | ACL LaTeX source, references, figures, and tables used by the paper |
-| `output/pdf/` | Compiled course-paper manuscript |
-| `src/` | Data preparation, training, evaluation, and statistical analysis code |
-| `config/` | Frozen configurations for the reported experiments |
-| `results/` | Release-safe aggregate results supporting the reported values |
-| `docs/DATA_STATEMENT.md` | Data provenance, processing, privacy, and access limits |
+| `configs/` | Frozen data, model, intervention, seed, and evaluation settings |
+| `src/` | Preprocessing, training, evaluation, and statistical implementation |
+| `scripts/` | Short entry points for the two main experiment pipelines |
+| `data/README.md` | Data provenance, acquisition, preprocessing, and privacy limits |
+| `results/` | Release-safe aggregate values underlying the paper |
+| `figures/` | Final figures used by the manuscript |
+| `paper/` | ACL LaTeX source, bibliography, style files, and generated tables |
+| `output/pdf/` | Compiled manuscript |
 
-## Verify the released results
+The division is intentional: **configs describe what is run, source files
+implement it, and scripts provide one-command entry points.**
 
-The lightweight verifier uses only the Python standard library and recomputes
-the headline values from the released aggregate tables:
+## Environment
+
+The reference environment is Python 3.11:
 
 ```bash
-python3 scripts/verify_public_artifact.py
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
-## Reproduction scope
+The POS annotation reported in the paper uses spaCy 3.4.4 with
+`en_core_web_sm` 3.4.1.
 
-The repository contains the principal code and frozen configurations, but not
-the licensed source corpus, derived utterance text, per-example predictions,
-tokenizers, or model checkpoints. Consequently, the released aggregate values
-can be checked directly, while confidence intervals and trained models can be
-recomputed only after independently obtaining the source data and regenerating
-the local intermediate files.
+## Data preparation
 
-The reference environment is Python 3.11 with versions pinned in
-`requirements.txt`. After obtaining the CHILDES component of BabyLM 2026
-Strict, keep it outside version control and prepare it locally:
+The source is the CHILDES component of
+[BabyLM 2026 Strict](https://huggingface.co/datasets/BabyLM-community/BabyLM-2026-Strict).
+Obtain it independently, keep it outside Git, and then run:
 
 ```bash
-python src/prepare_expanded_childes.py \
+python src/preprocess_childes.py \
   /path/to/childes.train.txt data/expanded_childes
-python src/annotate_plaintext_spacy.py \
+python src/annotate_pos.py \
   data/expanded_childes/childes_train2_cds_full_cleaned.txt \
   data/expanded_childes/pos/childes_train2_cds_full_spacy_pos.txt
 ```
 
-Run the five-condition confirmatory experiment with:
+See [`data/README.md`](data/README.md) for the exact source hash, selection
+rules, split sizes, and applicable TalkBank restrictions.
+
+## Run the experiments
+
+Natural-corpus training, ablations, evaluation, and summary:
 
 ```bash
-bash scripts/run_full_confirmatory.sh
+bash scripts/run_natural_corpus.sh
 ```
 
-After the Original checkpoints for seeds 2026--2028 are available, run the
-nonce experiment and its summary:
+Nonce transfer, starting from the Original checkpoints for seeds 2026--2028:
 
 ```bash
-PYTHONPATH=src python src/run_nonce_cross_template.py
-PYTHONPATH=src python src/summarize_nonce.py
+bash scripts/run_nonce.sh
 ```
 
-The static baseline and cue-behavior analyses additionally require local
-per-example predictions and the locally generated evaluation inventory. These
-are intentionally excluded because they retain links to source contexts.
+The frozen settings are [`configs/natural_corpus.yaml`](configs/natural_corpus.yaml)
+and [`configs/nonce.yaml`](configs/nonce.yaml). Full retraining is
+compute-intensive; checkpoints and logs are generated locally and are not
+versioned.
 
-## Data access and release boundary
+## Results and traceability
 
-The source is the CHILDES component of
-[BabyLM 2026 Strict](https://huggingface.co/datasets/BabyLM-community/BabyLM-2026-Strict),
-subject to the applicable [TalkBank access and ground
-rules](https://talkbank.org/0share/rules.html) and any corpus-specific terms.
-Users must obtain the source independently.
+| Paper evidence | Released source |
+|---|---|
+| Natural-corpus means and seed variability | `results/natural_corpus/metrics_summary.csv` |
+| Natural-corpus confidence intervals | `results/natural_corpus/confirmatory_hierarchical_bootstrap.csv` |
+| AUX-specificity decision | `results/natural_corpus/CONFIRMATORY_DECISION.json` |
+| Nonce means and confidence intervals | `results/nonce/` |
+| Learning curve, baselines, random initialization, correlations | `results/statistics/` |
 
-No raw or derived transcript text, per-example predictions, evaluation
-contexts, tokenizers, checkpoints, or model logs are distributed here. See
-[`docs/DATA_STATEMENT.md`](docs/DATA_STATEMENT.md) for hashes, selection rules,
-split sizes, and privacy limitations.
+Recompute the headline numbers from these aggregates with:
+
+```bash
+python3 scripts/verify_results.py
+```
+
+The repository does not include the licensed corpus, derived utterance text,
+per-example predictions, evaluation contexts, tokenizers, model checkpoints,
+or training logs. Aggregate values can be verified directly; recomputing
+confidence intervals or models requires regenerating the excluded local
+intermediates.
 
 ## Citation and license
 
-Citation metadata are provided in [`CITATION.cff`](CITATION.cff). Until a
-proceedings record exists, cite the manuscript title shown above.
-
-Original code is licensed under the MIT License. Original documentation,
-aggregate results, and figures are licensed under CC BY 4.0. The manuscript,
-ACL style files, and upstream datasets retain the separate terms described in
-[`LICENSE`](LICENSE).
+Citation metadata are in [`CITATION.cff`](CITATION.cff). Original code is
+licensed under MIT; original documentation, aggregate results, and figures are
+licensed under CC BY 4.0. The manuscript, ACL style files, and upstream
+datasets retain the separate terms described in [`LICENSE`](LICENSE).

@@ -1,6 +1,6 @@
-version: ACL_confirmatory_aux_v2
+version: natural_corpus_v2
 experiment_design: acl_aux_confirmatory_v2
-source_config: config/Expanded_source_full.yaml
+source_config: configs/source.yaml
 seed: 2026
 lowercase: true
 source_distribution: CHILDES-train2-MOT-FAT-expanded
@@ -9,11 +9,11 @@ paths:
   raw_corpus: data/expanded_childes/pos/childes_train2_cds_full_spacy_pos.txt
   processed_dir: data/processed_expanded_full
   splits_dir: data/splits_expanded_full
-  conditions_dir: data/conditions/ACL_confirmatory_aux_v2
-  audits_dir: audits/ACL_confirmatory_aux_v2
-  results_dir: results/ACL_confirmatory_aux_v2
-  model_dir: models/ACL_confirmatory_aux_v2
-  tokenizer_dir: data/tokenizer/Expanded_shared_full_4k
+  conditions_dir: data/conditions/natural_corpus
+  audits_dir: audits/natural_corpus
+  results_dir: results/natural_corpus
+  model_dir: models/natural_corpus
+  tokenizer_dir: data/tokenizer/shared_full_4k
 
 special_tokens:
   bos: "<s>"

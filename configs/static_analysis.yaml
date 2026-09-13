@@ -1,12 +1,12 @@
-version: ACL_static_analysis_v1
-source_config: config/Expanded_source_full.yaml
+version: static_analysis_v1
+source_config: configs/source.yaml
 seed: 2026
 paths:
   records: data/processed_expanded_full/utterances.jsonl
   splits: data/splits_expanded_full/splits.json
-  legacy_predictions: results/Expanded_learning_curve_full/mvp_per_example.csv
-  output_dir: results/ACL_static_analysis_v1
-  audit_dir: audits/ACL_static_analysis_v1
+  legacy_predictions: results/learning_curve/full/mvp_per_example.csv
+  output_dir: results/statistics
+  audit_dir: audits/static_analysis
 audit:
   sample_size: 500
   context_window: 6

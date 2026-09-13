@@ -8,8 +8,8 @@ import time
 from pathlib import Path
 from typing import Any
 
-from pilot_utils import load_json, project_path
-from run_pilot_v4_roberta import (
+from experiment_utils import load_json, project_path
+from train import (
     create_conditions_and_audits,
     evaluate,
     load_merged_config,
@@ -23,7 +23,7 @@ from run_pilot_v4_roberta import (
 )
 
 
-DEFAULT_CONFIG = Path(__file__).resolve().parents[1] / "config" / "Confirmatory_ablation_v1_babylm2026.yaml"
+DEFAULT_CONFIG = Path(__file__).resolve().parents[1] / "configs" / "natural_corpus.yaml"
 
 
 def write_progress(path: Path, data: dict[str, Any]) -> None:
@@ -66,7 +66,7 @@ def parse_csv(value: str | None) -> list[str] | None:
 
 
 def run_resumable_evaluation(config_path: Path, resume: bool, conditions: list[str] | None = None, seeds: list[int] | None = None) -> None:
-    command = [sys.executable, str(Path(__file__).with_name("run_mvp_eval_with_progress.py")), "--config", str(config_path)]
+    command = [sys.executable, str(Path(__file__).with_name("evaluate.py")), "--config", str(config_path)]
     if resume:
         command.append("--resume")
     if conditions:
@@ -80,7 +80,7 @@ def run_resumable_evaluation(config_path: Path, resume: bool, conditions: list[s
     covers_full_run = set(conditions or expected_conditions) == expected_conditions and {int(seed) for seed in (seeds or expected_seeds)} == expected_seeds
     if config.get("experiment_design") == "acl_aux_confirmatory_v2" and covers_full_run:
         subprocess.run(
-            [sys.executable, str(Path(__file__).with_name("summarize_confirmatory.py")), "--results-dir", str(project_path(config["paths"]["results_dir"]))],
+            [sys.executable, str(Path(__file__).with_name("summarize_ablation.py")), "--results-dir", str(project_path(config["paths"]["results_dir"]))],
             check=True,
         )
 

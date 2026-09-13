@@ -261,7 +261,7 @@ def render_results(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Gate and insert complete E7 results into the ACL manuscript.")
-    parser.add_argument("--results-dir", default=str(ROOT / "results/ACL_confirmatory_aux_v2"))
+    parser.add_argument("--results-dir", default=str(ROOT / "results/natural_corpus"))
     parser.add_argument("--paper-dir", default=str(ROOT / "paper"))
     parser.add_argument("--seeds", default="2026,2027,2028,2029,2030")
     parser.add_argument("--expected-items", type=int, default=600)

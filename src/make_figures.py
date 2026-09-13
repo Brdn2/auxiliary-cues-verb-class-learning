@@ -9,7 +9,7 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "paper/figures"
+OUT = ROOT / "figures"
 BLUE = "#2B6CB0"
 ORANGE = "#D97706"
 GRAY = "#6B7280"
@@ -29,7 +29,7 @@ def finish(fig: plt.Figure, name: str) -> None:
 
 
 def learning_curve() -> None:
-    rows = read_csv(ROOT / "results/Expanded_learning_curve_summary/original_learning_curve.csv")
+    rows = read_csv(ROOT / "results/statistics/learning_curve.csv")
     order = ["0720k", "2000k", "full"]
     labels = ["0.72M", "2.0M", "Full"]
     grouped = defaultdict(list)
@@ -55,11 +55,11 @@ def learning_curve() -> None:
 
 
 def baseline_gradient() -> None:
-    rows = read_csv(ROOT / "results/ACL_static_analysis_v1/baseline_summary.csv")
-    random_init_rows = read_csv(ROOT / "results/ACL_random_init/metrics_summary.csv")
+    rows = read_csv(ROOT / "results/statistics/baselines.csv")
+    random_init_rows = read_csv(ROOT / "results/statistics/random_init.csv")
     random_values = [float(row["verb_class_accuracy"]) * 100 for row in random_init_rows]
     deterministic = {row["baseline"]: float(row["accuracy"]) * 100 for row in rows if row["seed"] == "deterministic"}
-    model_rows = read_csv(ROOT / "results/Expanded_learning_curve_summary/original_learning_curve.csv")
+    model_rows = read_csv(ROOT / "results/statistics/learning_curve.csv")
     full = np.mean([float(row["verb_class_accuracy"]) * 100 for row in model_rows if row["scale"] == "full"])
     labels = ["Random init", "AUX only", "POS frame", "Lexical context", "Full MLM"]
     values = [np.mean(random_values), deterministic["aux_only_nb"], deterministic["pos_frame_count"], deterministic["lexical_cooccurrence_nb"], full]
@@ -81,7 +81,7 @@ def baseline_gradient() -> None:
 
 
 def nonce_effects() -> None:
-    rows = [row for row in read_csv(ROOT / "results/ACL_nonce_cross_template_v2/hierarchical_bootstrap.csv") if row["metric"] == "verb_class_accuracy"]
+    rows = [row for row in read_csv(ROOT / "results/nonce/hierarchical_bootstrap.csv") if row["metric"] == "verb_class_accuracy"]
     names = {
         "zero_shot": "Zero-shot",
         "aux_ablated_exposure": "AUX-identity ablation",
@@ -108,7 +108,7 @@ def nonce_effects() -> None:
 
 
 def cue_behavior() -> None:
-    rows = read_csv(ROOT / "results/ACL_static_analysis_v1/item_cue_features.csv")
+    rows = read_csv(ROOT / "results/statistics/item_cue_features.csv")
     fig, ax = plt.subplots(figsize=(5.0, 3.2))
     for seed, color in zip(sorted({row["seed"] for row in rows}), [BLUE, ORANGE, GRAY]):
         subset = [row for row in rows if row["seed"] == seed]
