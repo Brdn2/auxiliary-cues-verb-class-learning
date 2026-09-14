@@ -7,7 +7,7 @@ authors:
     given-names: Yiyang
 date-released: 2026-08-31
 version: 1.0.0
-repository-code: "https://github.com/Brdn2/auxiliary-cues-novel-verb"
+repository-code: "https://github.com/Brdn2/auxiliary-cues-verb-class-learning"
 abstract: >-
   Code, configurations, aggregate results, and paper materials for controlled
   experiments on auxiliary cues and coarse verb-class learning in small masked
