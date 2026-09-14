@@ -9,13 +9,60 @@ from pathlib import Path
 from typing import Any
 
 from statistical_analysis import hierarchical_paired_bootstrap
-from update_paper import validate_complete
 
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_CONDITIONS = {"original", "AUX_target_ablation", "AUX_matched_content", "AUX_matched_function", "AUX_identity_shuffle"}
 EXPECTED_SEEDS = {2026, 2027, 2028, 2029, 2030}
 EXPECTED_ITEMS = 600
+
+
+def validate_complete(
+    rows: list[dict[str, str]], expected_seeds: set[int], expected_items: int
+) -> None:
+    observed_conditions = {row["condition"] for row in rows}
+    if observed_conditions != EXPECTED_CONDITIONS:
+        raise RuntimeError(
+            "Incomplete condition set: "
+            f"expected={sorted(EXPECTED_CONDITIONS)}, "
+            f"observed={sorted(observed_conditions)}"
+        )
+
+    reference_ids: set[int] | None = None
+    seen: set[tuple[str, int, int]] = set()
+    for condition in sorted(EXPECTED_CONDITIONS):
+        observed_seeds = {
+            int(row["seed"]) for row in rows if row["condition"] == condition
+        }
+        if observed_seeds != expected_seeds:
+            raise RuntimeError(
+                f"Incomplete seeds for {condition}: "
+                f"expected={sorted(expected_seeds)}, observed={sorted(observed_seeds)}"
+            )
+        for seed in sorted(expected_seeds):
+            subset = [
+                row
+                for row in rows
+                if row["condition"] == condition and int(row["seed"]) == seed
+            ]
+            item_ids = {int(row["example_id"]) for row in subset}
+            if len(subset) != expected_items or len(item_ids) != expected_items:
+                raise RuntimeError(
+                    f"Incomplete or duplicated evaluation cell {condition}/seed={seed}: "
+                    f"rows={len(subset)}, unique_items={len(item_ids)}, "
+                    f"expected={expected_items}"
+                )
+            if reference_ids is None:
+                reference_ids = item_ids
+            elif item_ids != reference_ids:
+                raise RuntimeError(
+                    f"Evaluation-item mismatch for {condition}/seed={seed}"
+                )
+            for item_id in item_ids:
+                key = (condition, seed, item_id)
+                if key in seen:
+                    raise RuntimeError(f"Duplicate evaluation key: {key}")
+                seen.add(key)
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -82,7 +129,7 @@ def main() -> None:
     results_dir = Path(args.results_dir)
     rows = read_csv(results_dir / "mvp_per_example.csv")
     # This must precede every write below: no partial, duplicated, or
-    # evaluation-item-misaligned matrix may produce paper-facing statistics.
+    # evaluation-item-misaligned matrix may produce released statistics.
     validate_complete(rows, EXPECTED_SEEDS, EXPECTED_ITEMS)
     expected_seeds = EXPECTED_SEEDS
     summarize_training(Path(args.model_dir), expected_seeds, results_dir)

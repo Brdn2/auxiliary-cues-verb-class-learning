@@ -20,12 +20,12 @@ FORBIDDEN_RESULT_PATTERNS = {
     "aux_context_sample*.csv",
 }
 REQUIRED = {
-    "CITATION.cff",
     "LICENSE",
     "README.md",
+    "requirements.txt",
+    "configs/natural_corpus.yaml",
     "data/README.md",
-    "output/pdf/paper.pdf",
-    "paper/main.tex",
+    "results/README.md",
     "results/natural_corpus/CONFIRMATORY_DECISION.json",
 }
 

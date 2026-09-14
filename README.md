@@ -4,8 +4,6 @@ Research materials for the ACL-format course paper **“Are Auxiliary Cues
 Uniquely Informative for Coarse Verb-Class Learning in Masked Language Models
 Trained on CHILDES?”**
 
-[Read the paper](output/pdf/paper.pdf)
-
 The study asks whether English auxiliary identity contributes uniquely to
 coarse verb-class expectations in small masked language models trained from
 scratch on child-directed speech. The matched-control experiments support a
@@ -36,8 +34,6 @@ effect.
 | `data/README.md` | Data provenance, acquisition, preprocessing, and privacy limits |
 | `results/` | Release-safe aggregate values underlying the paper |
 | `figures/` | Final figures used by the manuscript |
-| `paper/` | ACL LaTeX source, bibliography, style files, and generated tables |
-| `output/pdf/` | Compiled manuscript |
 
 The division is intentional: **configs describe what is run, source files
 implement it, and scripts provide one-command entry points.**
@@ -115,7 +111,10 @@ intermediates.
 
 ## Citation and license
 
-Citation metadata are in [`CITATION.cff`](CITATION.cff). Original code is
-licensed under MIT; original documentation, aggregate results, and figures are
-licensed under CC BY 4.0. The manuscript, ACL style files, and upstream
-datasets retain the separate terms described in [`LICENSE`](LICENSE).
+When using these materials, cite Yiyang Liu's course paper **“Are Auxiliary
+Cues Uniquely Informative for Coarse Verb-Class Learning in Masked Language
+Models Trained on CHILDES?”**
+
+Original code is licensed under MIT. Original documentation, aggregate
+results, and figures are licensed under CC BY 4.0. Upstream datasets retain
+their own terms; see [`LICENSE`](LICENSE).
